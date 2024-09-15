@@ -22,3 +22,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ghcr.io/wyhrihaximusnet/docker-github-action-runner:latest
           platforms: linux/amd64,linux/arm64
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.GHCR_TOKEN }}
