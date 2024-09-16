@@ -24,5 +24,5 @@ RUN groupmod -g 1000 runner && usermod -u 1000 runner
 
 USER runner
 
-# Make sure default installed node and such are available for use
-ENV PATH="/home/runner/.local/bin:$PATH"
+# Make sure default installed node available for use
+ENV PATH="/home/runner/externals/node20/bin/:$PATH"
