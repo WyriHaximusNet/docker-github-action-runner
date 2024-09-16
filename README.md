@@ -12,4 +12,4 @@ Also includes the following tools:
 * terraform
 * AWS CLI (v2)
 
-Also unlocks the installed tools in `/home/runner/.local/bin` by adding it into the `$PATH` environment variable.
+Unlocks node v20 that is already available in the image
