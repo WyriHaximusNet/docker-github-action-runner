@@ -27,5 +27,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/wyhrihaximusnet/docker-github-action-runner:latest
+          tags: ghcr.io/wyrihaximusnet/docker-github-action-runner:latest
           platforms: linux/amd64,linux/arm64
