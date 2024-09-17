@@ -6,7 +6,7 @@ USER root
 RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true";};' | tee /etc/apt/apt.conf.d/clean) &&\
     apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install -y curl wget make git unzip gnupg software-properties-common &&\
+    apt-get install -y curl wget make git unzip gnupg software-properties-common jq &&\
     ## terraform
     (wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor |  tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null) &&\
     gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint &&\
