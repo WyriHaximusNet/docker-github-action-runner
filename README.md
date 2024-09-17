@@ -7,6 +7,7 @@ Opinionated GitHub Action Runner image that brings the ships the following packa
 * git 
 * unzip 
 * gnupg
+* jq
 
 Also includes the following tools:
 * terraform
