@@ -10,7 +10,8 @@ Opinionated GitHub Action Runner image that brings the ships the following packa
 * jq
 
 Also includes the following tools:
-* terraform
+* TerraForm
 * AWS CLI (v2)
+* Helm
 
 Unlocks node v20 that is already available in the image
