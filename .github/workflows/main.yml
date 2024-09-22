@@ -11,6 +11,11 @@ jobs:
     name: Build Image
     runs-on: ubuntu-latest
     steps:
+      - name: Get Time
+        id: time
+        uses: nanzm/get-time-action@v2.0
+        with:
+          format: 'YYYY.MM.DD'
       - uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -27,5 +32,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/wyrihaximusnet/docker-github-action-runner:latest
+          tags: ghcr.io/wyrihaximusnet/docker-github-action-runner:latest,ghcr.io/wyrihaximusnet/docker-github-action-runner:${{ steps.time.outputs.time }}
           platforms: linux/amd64,linux/arm64
