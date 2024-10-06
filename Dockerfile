@@ -1,8 +1,10 @@
 # syntax=docker/dockerfile:1
+# hadolint ignore=DL3007
 FROM ghcr.io/actions/actions-runner:latest
 
 USER root
 
+# hadolint ignore=DL3008,DL3047,DL3009,DL4006,DL3015,DL4001
 RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true";};' | tee /etc/apt/apt.conf.d/clean) &&\
     apt-get update &&\
     apt-get upgrade -y &&\
