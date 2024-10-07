@@ -23,10 +23,10 @@ RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true"
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 &&\
     chmod 700 get_helm.sh &&\
     ./get_helm.sh &&\
-    rm ./get_helm.sh
+    rm ./get_helm.sh &&\
 
-## See https://github.com/actions/checkout/issues/956
-RUN groupmod -g 1000 runner && usermod -u 1000 runner
+    ## See https://github.com/actions/checkout/issues/956
+    groupmod -g 1000 runner && usermod -u 1000 runner
 
 USER runner
 
