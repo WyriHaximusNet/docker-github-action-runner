@@ -1,6 +1,6 @@
 import pytest
 
-def test_user_app(host):
+def test_user_runner(host):
     userName = 'runner'
     groupName = 'runner'
     homeDir = '/home/runner'
