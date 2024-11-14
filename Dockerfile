@@ -8,23 +8,30 @@ USER root
 RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true";};' | tee /etc/apt/apt.conf.d/clean) &&\
     apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install -y curl wget make git unzip gnupg software-properties-common jq &&\
-    ## TerraForm
+    apt-get install -y curl wget make git unzip gnupg software-properties-common jq ca-certificates &&\
+    ## TerraForm: Prep
     (wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor |  tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null) &&\
     gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint &&\
     (echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list) &&\
+    ## Docker + QEMU + buildx: Prep
+    install -m 0755 -d /etc/apt/keyrings &&\
+    curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc &&\
+    chmod a+r /etc/apt/keyrings/docker.asc &&\
+    (echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null) &&\
+    ## TerraForm: Prep
+    ## Docker + QEMU + buildx: Install
     apt-get update &&\
-    apt-get install -y terraform &&\
+    apt-get install -y terraform docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin qemu-user-static &&\
     ## AWS CLI
     curl "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m).zip" -o "/tmp/awscliv2.zip" &&\
     unzip /tmp/awscliv2.zip &&\
     ./aws/install &&\
     rm /tmp/* -Rf &&\
+    ## Helm
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 &&\
     chmod 700 get_helm.sh &&\
     ./get_helm.sh &&\
     rm ./get_helm.sh &&\
-
     ## See https://github.com/actions/checkout/issues/956
     groupmod -g 1000 runner && usermod -u 1000 runner
 

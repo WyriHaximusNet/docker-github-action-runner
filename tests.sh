@@ -13,7 +13,7 @@ declare -r DOCKER_TAG="$1"
 
 printf "Starting a container for '%s'\\n" "$DOCKER_TAG"
 
-DOCKER_CONTAINER=$(docker run --rm -v "$(pwd)/test:/tests" -t -d "$DOCKER_TAG")
+DOCKER_CONTAINER=$(docker run --rm -v "$(pwd)/test:/tests" -v "/var/run/docker.sock:/var/run/docker.sock:ro" -t -d "$DOCKER_TAG")
 readonly DOCKER_CONTAINER
 
 # Let's register a trap function, if our tests fail, finish or the script gets
