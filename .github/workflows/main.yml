@@ -84,7 +84,7 @@ jobs:
     name: Test ${{ matrix.platform }}
     needs:
       - supported-platform-matrix
-      - scan-vulnerability
+      - build-docker-image
     strategy:
       fail-fast: false
       matrix:
@@ -110,6 +110,7 @@ jobs:
     name: Push
     needs:
       - supported-platform-matrix
+      - scan-vulnerability
       - tests
     runs-on: ubuntu-latest
     services:
