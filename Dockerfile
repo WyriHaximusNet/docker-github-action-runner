@@ -29,6 +29,9 @@ RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true"
     ./get_helm.sh &&\
     rm ./get_helm.sh &&\
 
+    ## Serverless \
+    npm i serverless -g &&\
+
     ## See https://github.com/actions/checkout/issues/956
     groupmod -g 1000 runner && usermod -u 1000 runner &&\
 
