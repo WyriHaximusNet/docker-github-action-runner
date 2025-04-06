@@ -13,5 +13,6 @@ Also includes the following tools:
 * TerraForm
 * AWS CLI (v2)
 * Helm
+* OSS Serverless
 
 Unlocks node v20 that is already available in the image
