@@ -36,7 +36,10 @@ RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true"
     npm install -g osls@3 &&\
 
     ## See https://github.com/actions/checkout/issues/956
+    userdel -rf ubuntu || true &&\
+    groupdel ubuntu || true &&\
     groupmod -g 1000 runner && usermod -u 1000 runner &&\
+    chown -R runner:runner /home/runner &&\
 
     ## Clean up /tmp and /var/cache aggressively
     rm /tmp/* -Rf &&\
