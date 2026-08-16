@@ -5,6 +5,7 @@ FROM ghcr.io/actions/actions-runner:latest
 # Make sure default installed node available for use
 ENV PATH="/home/runner/externals/node20/bin/:$PATH"
 
+# hadolint ignore=DL3066
 USER root
 
 # hadolint ignore=DL3008,DL3047,DL3009,DL4006,DL3015,DL4001
@@ -45,4 +46,5 @@ RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true"
     rm /tmp/* -Rf &&\
     rm /var/cache/* -Rf
 
+# hadolint ignore=DL3066
 USER runner
