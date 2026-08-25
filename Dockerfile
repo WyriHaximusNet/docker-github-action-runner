@@ -8,11 +8,15 @@ ENV PATH="/home/runner/externals/node20/bin/:$PATH"
 # hadolint ignore=DL3066
 USER root
 
+COPY src/chromium.pref /etc/apt/preferences.d/chromium.pref
+COPY src/debian.list /etc/apt/sources.list.d/debian.list
+
 # hadolint ignore=DL3008,DL3047,DL3009,DL4006,DL3015,DL4001
 RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true";};' | tee /etc/apt/apt.conf.d/clean) &&\
     apt-get update &&\
     apt-get upgrade -y &&\
-    apt-get install -y curl wget make git unzip gnupg software-properties-common jq &&\
+    apt-get install -y curl wget make git unzip gnupg software-properties-common jq chromium &&\
+    snap install chromium &&\
 
     ## TerraForm
     (wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor |  tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null) &&\
