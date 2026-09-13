@@ -33,6 +33,10 @@ RUN (echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true"
     ./get_helm.sh &&\
     rm ./get_helm.sh &&\
 
+    ## kubectl
+    curl -fsSL -o /usr/local/bin/kubectl "https://dl.k8s.io/release/$(curl -fsSL https://dl.k8s.io/release/stable.txt)/bin/linux/$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')/kubectl" &&\
+    chmod +x /usr/local/bin/kubectl &&\
+
     ## Serverless
     npm install -g osls@3 &&\
 
