@@ -1,0 +1,6 @@
+deb [arch=amd64 signed-by=/usr/share/keyrings/debian-trixie.gpg] http://deb.debian.org/debian trixie main
+deb [arch=amd64 signed-by=/usr/share/keyrings/debian-trixie-updates.gpg] http://deb.debian.org/debian trixie-updates main
+deb [arch=amd64 signed-by=/usr/share/keyrings/debian-security-trixie.gpg] http://deb.debian.org/debian-security trixie/updates main
+deb [arch=arm64 signed-by=/usr/share/keyrings/debian-trixie.gpg] http://deb.debian.org/debian trixie main
+deb [arch=arm64 signed-by=/usr/share/keyrings/debian-trixie-updates.gpg] http://deb.debian.org/debian trixie-updates main
+deb [arch=arm64 signed-by=/usr/share/keyrings/debian-security-trixie.gpg] http://deb.debian.org/debian-security trixie/updates main
