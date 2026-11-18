@@ -14,7 +14,7 @@ jobs:
     steps:
       - id: supported-platform-matrix
         name: Generate platform
-        uses: WyriHaximus/github-action-oci-image-supported-platforms@main
+        uses: WyriHaximus/github-action-oci-image-supported-platforms@182844ff8203231c1df422009f36bb738f3bf8bf # main
   lint-dockerfile:
     name: Lint Dockerfile
     runs-on: ubuntu-latest
